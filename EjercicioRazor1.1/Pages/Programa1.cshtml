@@ -1,0 +1,86 @@
+﻿@page
+@model EjercicioRazor1._1.Pages.Programa1Model
+@{
+ 
+}
+<div class="container">
+    <h3>
+        <strong>Programa 1</strong>
+        Calcular Indice de Masa Corporal (IMC)
+    </h3>
+    <form method="post">
+
+        <div class="row">
+            <div class="col-6">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">Peso: </span>
+                    <input type="number" class="form-control" placeholder="(kg)" asp-for="peso" required />
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">Altura: </span>
+                    <input type="number" class="form-control" placeholder="(centimetros)" asp-for="altura" required/>
+                </div>
+                <P>
+                    <input class="btn btn-primary" type="submit" value="Calcular" />
+                </P>
+            </div>
+            <div class="col-6">
+                @if (Model.IMC != 0)
+                {
+                    var msj = "Usted tiene: ";
+                    var imagen = "";
+
+                    @if (Model.IMC < 18)
+                    {
+                        msj = msj + "Peso Bajo";
+                        imagen = "/img/PesoBajo.png";
+                    }
+                    else if(Model.IMC >= 18 & Model.IMC < 25)
+                    {
+                        msj = msj + "Peso Normal";
+                        imagen = "/img/PesoNormal.png";
+                    }
+                    else if (Model.IMC >= 25 & Model.IMC < 27)
+                    {
+                        msj = msj + "Sobre Peso";
+                        imagen = "/img/SobrePeso.png";
+                    }
+                    else if (Model.IMC >= 27 & Model.IMC < 30)
+                    {
+                        msj = msj + "Obesidad Grado I";
+                        imagen = "/img/ObesidadGradoI.png";
+                    }
+                    else if (Model.IMC >= 30 & Model.IMC < 40)
+                    {
+                        msj = msj + "Obesidad Grado II";
+                        imagen = "/img/ObesidadGradoII.png";
+                    }
+                    else if (Model.IMC >= 40 )
+                    {
+                        msj = msj + "Obesidad Grado III";
+                        imagen = "/img/ObesidadGradoIII.png";
+                    }
+
+                    <div>
+
+                        <div class="card" style="width: 100%;">
+                          <img src="@imagen" alt="Imagen relacionada con el IMC">
+                          <div class="card-body">
+                            <h5 class="card-title">Recomendaciones</h5>
+                            <p class="card-text">
+                                @msj
+                                <br/>
+                                IMC = @Model.IMC
+                            </p>
+                          </div>
+                        </div>
+
+                    </div>
+                }
+            
+            </div>
+        </div>
+    
+    </form>
+
+</div>

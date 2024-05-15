@@ -1,0 +1,47 @@
+﻿@page
+@model EjercicioRazor1._1.Pages.Programa2Model
+@{
+}
+
+<div class="container">
+    <h3>
+        <strong>Programa 2</strong>
+        Encriptar Mensajes
+    </h3>
+    <form method="post">
+
+        <div class="row">
+            <div class="col-6">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">Mensaje: </span>
+                    <input type="text" class="form-control" placeholder="(Escribe un mensaje)" asp-for="msj" required />
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">Valor (n): </span>
+                    <input type="number" class="form-control" placeholder="(Ingresa el valor de N)" asp-for="valorN" min="1" max="30" required />
+                </div>
+                <div>
+                    <input type="radio" id="Codificar" name="Opcion" value="Codificar" checked />
+                    <label for="Codificar">Codificar</label>
+
+                    <input type="radio" id="Decodificar" name="Opcion" value="Decodificar" />
+                    <label for="Decodificar">Decodificar</label>
+                </div>
+                <P>
+                    <input class="btn btn-primary" type="submit" value="Calcular" />
+                </P>
+            </div>
+            <div class="col-6">
+                @if (!string.IsNullOrEmpty(Model.respuesta))
+                {
+                    <div class="result">
+                        <h4>Resultado:</h4>
+                        <p>@Model.respuesta</p>
+                    </div>
+                }
+            </div>
+        </div>
+
+    </form>
+
+</div>

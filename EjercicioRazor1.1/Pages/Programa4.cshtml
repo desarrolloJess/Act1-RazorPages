@@ -1,0 +1,98 @@
+﻿@page
+@model EjercicioRazor1._1.Pages.Programa4Model
+@{
+}
+
+@{
+    // Crear un arreglo de tamaño 20
+    int[] arrNumAleatorios = new int[20];
+
+    // Generar números aleatorios y llenar el arreglo
+    Random random = new Random();
+    for (int i = 0; i < arrNumAleatorios.Length; i++)
+    {
+        arrNumAleatorios[i] = random.Next(101);
+    }
+
+    double suma = CalcularSuma(arrNumAleatorios);
+    double media = CalcularPromedio(suma, arrNumAleatorios.Length);
+    double moda = CalcularModa(arrNumAleatorios);
+    double mediana = CalcularMediana(arrNumAleatorios);
+
+}
+
+
+@functions{
+    double CalcularSuma(int[] num){
+        double suma = 0;
+
+        for (int i = 0; i < num.Length; i++)
+        {
+            suma = suma + num[i];
+        }
+        return suma;
+    }
+    double CalcularPromedio(double suma, int cantidad)
+    {
+        double promedio = 0;
+        promedio = suma / cantidad;
+        return promedio;
+    }
+    double CalcularModa(int[] num)
+    {
+        return num.GroupBy(x => x).OrderByDescending(g => g.Count()).First().Key;
+    }
+    double CalcularMediana(int[] num)
+    {
+        double mediana = 0;
+        if (num.Length % 2 == 0)
+        {
+            int valor1 = num.Length / 2 - 1;
+            int valor2 = num.Length / 2;
+            mediana = (num[valor1] + num[valor2]) / 2.0;
+        }
+        else
+        {
+            int medio = num.Length / 2;
+            mediana = num[medio];
+        }
+        return mediana;
+    }
+
+}
+
+
+<div class="container">
+
+    <h3>
+        <strong>Programa 4</strong>
+        Arreglo Aleatorio
+    </h3>
+    <br/>
+    <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+        Clic para Ver Contenido del Arreglo
+    </a>
+    <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+            <ul>
+                @foreach (var num in arrNumAleatorios)
+                {
+                    <li>@num</li>
+                }
+            </ul>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <h4>Operaciones Calculadas:</h4>
+            <ul>
+                <li> <strong>Suma:</strong> @suma </li>
+                <li> <strong>Promedio:</strong> @media </li>
+                <li> <strong>Moda:</strong> @moda </li>
+                <li> <strong>Mediana:</strong> @mediana </li>
+            </ul>
+        </div>
+    </div>
+
+</div>

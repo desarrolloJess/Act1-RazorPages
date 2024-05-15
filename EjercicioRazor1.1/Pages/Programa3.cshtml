@@ -1,0 +1,71 @@
+﻿@page
+@model EjercicioRazor1._1.Pages.Programa3Model
+@{
+}
+
+
+<div class="container">
+    <h3>
+        <strong>Programa 3</strong>
+        Problema Matematicas
+    </h3>
+    <form method="post">
+
+        <div class="row">
+            <div class="col-6">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">a: </span>
+                    <input type="text" class="form-control" placeholder="(Ingresa el valor de A)" asp-for="a" required />
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">b: </span>
+                    <input type="text" class="form-control" placeholder="(Ingresa el valor de B)" asp-for="b" required />
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">x: </span>
+                    <input type="text" class="form-control" placeholder="(Ingresa el valor de X)" asp-for="x" required />
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">y: </span>
+                    <input type="text" class="form-control" placeholder="(Ingresa el valor de Y)" asp-for="y" required />
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">n: </span>
+                    <input type="text" class="form-control" placeholder="(Ingresa el valor de N)" asp-for="n" required />
+                </div>
+
+                <P>
+                    <input class="btn btn-primary" type="submit" value="Calcular" />
+                </P>
+            </div>
+            <div class="col-6">
+                @if (Model.Operacion1 != 0 && Model.Operacion2 != 0)
+                {
+                    <div>
+
+                        <div class="divResultados">
+
+                            <div class="card" style="width: 100%;">
+                                <img class="imgResp" src="~/img/ProblemaMate.png" alt="Expresión" height="200px" width="300px"/>
+                                <div class="card-body">
+                                    <h5 class="card-title">Resultado</h5>
+                                    <p class="card-text">
+                                        <div class="resultado">
+                                            <p>Resultado #1 = @Model.Operacion1</p>
+                                        </div>
+                                        <div class="resultado">
+                                            <p>Resultado #2 =  @Model.Operacion2</p>
+                                        </div>
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+    </form>
+
+</div>
